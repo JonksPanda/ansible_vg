@@ -1,0 +1,16 @@
+---
+# Installs mariaDB package
+
+- name: Make sure latest MariaDB package is installed
+  package:
+    name: mariadb-server
+    state: latest
+- name: Make sure latest version MySQL-python package is installed.
+  package:
+    name: MySQL-python
+    state: latest
+- name: Start MariaDB at boot.
+  service:
+    name: mariadb
+    enabled: True
+    state: started
