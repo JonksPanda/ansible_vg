@@ -5,3 +5,9 @@
   import_tasks: install.yml
 # - name: Configure database.
 #   import_tasks: configure-db.yml
+
+- name: Configure apache.
+  import_tasks: configure-apache.yml
+
+- name: Configure webapp.
+  import_tasks: configure-webapp.yml

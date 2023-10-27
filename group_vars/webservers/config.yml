@@ -1,0 +1,2 @@
+rpmpackage: http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+repository: "https://github.com/initab/demoapp.git"

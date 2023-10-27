@@ -1,19 +1,48 @@
 ---
-# installs all necessary packages for webapp
+# installs all necessary packages for the webapp
 
 - name: Make sure latest apache package is installed
   yum:
     name: httpd
     state: latest
   tags: apache-install
+
 - name: Start apache at boot.
   service:
     name: httpd
     enabled: True
     state: started
   tags: apache-install
+
 - name: Make sure latest version git package is installed.
   yum:
     name: git
     state: latest
   tags: git-install
+
+- name: Make sure RPM package is added
+  yum:
+    name: "{{ rpmpackage }}"
+    state: present
+  tags:
+    - perl-install
+    - rpm-package
+
+- name: install perl from rpm package
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - "@Development tools"
+    - perl
+    - "perl-App*"
+    - "perl-DBD*"
+    - "perl-Template*"
+    - "perl-YAML*"
+    - "perl-Capture-Tiny*"
+  tags: perl-install
+
+- name: install dancer from cpan
+  community.general.cpanm:
+    name: Dancer
+  tags: dancer-install

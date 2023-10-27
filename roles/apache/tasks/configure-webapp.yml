@@ -1,0 +1,8 @@
+---
+# Configures webapp
+
+- name: pull webapp repository from github
+  ansible.builtin.git:
+    repo: "{{ repository }}"
+    dest: "{{ repo_destination }}"
+  tags: pull-repo

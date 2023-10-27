@@ -1,2 +1,4 @@
 ---
 # defaults file for roles/apache
+
+repo_destination: "/var/www/demo"
