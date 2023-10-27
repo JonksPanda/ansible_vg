@@ -1,0 +1,7 @@
+---
+# tasks file for roles/apache
+
+- name: Install all neccesary packages for mariaDB.
+  import_tasks: install.yml
+# - name: Configure database.
+#   import_tasks: configure-db.yml

@@ -1,0 +1,17 @@
+---
+# Configure database and user
+
+- name: Create new database.
+  community.mysql.mysql_db:
+    name: webdata
+    state: present
+  tags: db-setup
+
+- name: Make sure database-user exists and can only access database from webserver
+  community.mysql.mysql_user:
+    name: "{{ dbuser.username }}"
+    password: "{{ dbuser.password }}"
+    priv: "webdata.*:ALL"
+    host: 172.28.128.89
+  tags: dbuser-setup
+  no_log: true

@@ -2,15 +2,18 @@
 # Installs mariaDB package
 
 - name: Make sure latest MariaDB package is installed
-  package:
+  yum:
     name: mariadb-server
     state: latest
+  tags: mariadb-install
 - name: Make sure latest version MySQL-python package is installed.
-  package:
+  yum:
     name: MySQL-python
     state: latest
+  tags: mysql-python-install
 - name: Start MariaDB at boot.
   service:
     name: mariadb
     enabled: True
     state: started
+  tags: mariadb-install
