@@ -1,0 +1,20 @@
+---
+# Configures apache
+
+- name: Import webapp-settings from template to production environment.
+  ansible.builtin.template:
+    src: demoapp.conf.j2
+    dest: "{{ vhost_dir_path }}{{ vhost_file }}"
+  tags: import-vhost-file
+  notify:
+    - Restart apache.
+
+- name: Flush handlers.
+  meta: flush_handlers
+
+- name: Set httpd_can_network_connect flag on and keep it persistent across reboots.
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: True
+    persistent: True
+  tags: set-httpd_can_network_connect-true

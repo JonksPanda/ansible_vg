@@ -15,21 +15,21 @@
   tags: apache-install
 
 - name: Make sure latest version git package is installed.
-  yum:
+  ansible.builtin.yum:
     name: git
     state: latest
   tags: git-install
 
-- name: Make sure RPM package is added
-  yum:
+- name: Make sure RPM package is added.
+  ansible.builtin.yum:
     name: "{{ rpmpackage }}"
     state: present
   tags:
     - perl-install
     - rpm-package
 
-- name: install perl from rpm package
-  yum:
+- name: Install perl from rpm package.
+  ansible.builtin.yum:
     name: "{{ item }}"
     state: present
   loop:
@@ -42,7 +42,16 @@
     - "perl-Capture-Tiny*"
   tags: perl-install
 
-- name: install dancer from cpan
+- name: Install dancer from cpan.
   community.general.cpanm:
     name: Dancer
   tags: dancer-install
+
+- name: Install libse-modules.
+  ansible.builtin.yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - libselinux-python
+    - libsemanage-python
+  tags: libse-install

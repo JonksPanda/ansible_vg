@@ -1,8 +1,35 @@
 ---
 # Configures webapp
 
-- name: pull webapp repository from github
+- name: Pull webapp repository from github.
   ansible.builtin.git:
     repo: "{{ repository }}"
     dest: "{{ repo_destination }}"
+    update: False
   tags: pull-repo
+
+- name: Import demod file to systemd.
+  ansible.builtin.template:
+    src: demod.service.j2
+    dest: "/etc/systemd/system/demod.service"
+  tags: import-demod-file
+  notify:
+    - Restart demod.
+
+- name: Start demod at boot.
+  service:
+    name: demod
+    enabled: True
+    state: started
+  tags: demod-enable
+
+- name: Import webapp-settings from template to production environment.
+  ansible.builtin.template:
+    src: production.yml.j2
+    dest: "{{ prod_settings_destination }}"
+  tags: import-prod-settings
+  notify:
+    - Restart demod.
+
+- name: Flush handlers.
+  meta: flush_handlers

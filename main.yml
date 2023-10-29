@@ -1,11 +1,13 @@
 ---
 
+- hosts: dbservers
+  roles:
+    - common
+    - mariadb
+
 - hosts: webservers
   roles:
     - common
     - apache
 
-- hosts: dbservers
-  roles:
-    - common
-    - mariadb
+

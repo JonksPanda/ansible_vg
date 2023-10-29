@@ -3,7 +3,7 @@
 
 - name: Create new database.
   community.mysql.mysql_db:
-    name: webdata
+    name: "{{ database.name }}"
     state: present
   tags: db-setup
 
@@ -11,7 +11,7 @@
   community.mysql.mysql_user:
     name: "{{ dbuser.username }}"
     password: "{{ dbuser.password }}"
-    priv: "webdata.*:ALL"
-    host: 172.28.128.89
+    priv: "{{ database.name }}.*:ALL,GRANT"
+    host: "{{ groups['webservers'][0] }}"
   tags: dbuser-setup
-  no_log: true
+  no_log: True

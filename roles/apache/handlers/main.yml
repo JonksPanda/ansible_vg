@@ -1,2 +1,12 @@
 ---
 # handlers file for roles/apache
+
+- name: Restart apache.
+  ansible.builtin.service:
+    name: httpd
+    state: restarted
+
+- name: Restart demod.
+  ansible.builtin.service:
+    name: demod
+    state: restarted
