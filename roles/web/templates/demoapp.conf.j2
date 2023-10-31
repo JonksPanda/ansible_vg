@@ -1,4 +1,4 @@
-<VirtualHost {{ ansible_all_ipv4_addresses[1] }}:80>
+<VirtualHost {{ groups['webservers'][0] }}:80>
     ServerName demoapp.example.org
 
     ProxyPass / http://127.0.0.1:8080/

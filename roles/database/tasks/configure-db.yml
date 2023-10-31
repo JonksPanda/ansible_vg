@@ -14,4 +14,4 @@
     priv: "{{ database.name }}.*:ALL,GRANT"
     host: "{{ groups['webservers'][0] }}"
   tags: dbuser-setup
-  no_log: True
+  no_log: true

@@ -2,13 +2,13 @@
 # tasks file for roles/apache
 
 - name: Install all neccesary packages for mariaDB.
-  import_tasks: install.yml
+  ansible.builtin.import_tasks: install.yml
   tags: install-web-programs
 
 - name: Configure webapp.
-  import_tasks: configure-webapp.yml
+  ansible.builtin.import_tasks: configure-webapp.yml
   tags: configure-webapp
 
 - name: Configure apache.
-  import_tasks: configure-apache.yml
+  ansible.builtin.import_tasks: configure-apache.yml
   tags: configure-apache

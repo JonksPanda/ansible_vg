@@ -1,7 +1,13 @@
 [Unit]
 Description=Ansible demo app.
 
+StartLimitIntervalSec=500
+StartLimitBurst=5
 [Service]
+Restart=on-failure
+RestartSec=5
+
+ExecStartPre=/
 ExecStart=/var/www/demo/bin/app.pl --port=8080 --environment=production
 
 [Install]

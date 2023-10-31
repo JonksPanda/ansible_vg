@@ -1,13 +1,12 @@
 ---
-
-- hosts: dbservers
+- name: Configure dbservers.
+  hosts: dbservers
   roles:
-    - common
-    - mariadb
+    - role: common
+    - role: database
 
-- hosts: webservers
+- name: Configure webservers.
+  hosts: webservers
   roles:
-    - common
-    - apache
-
-
+    - role: common
+    - role: web

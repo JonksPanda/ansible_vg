@@ -5,16 +5,17 @@
   ansible.builtin.template:
     src: demoapp.conf.j2
     dest: "{{ vhost_dir_path }}{{ vhost_file }}"
+    mode: "644"
   tags: import-vhost-file
   notify:
     - Restart apache.
 
 - name: Flush handlers.
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Set httpd_can_network_connect flag on and keep it persistent across reboots.
   ansible.posix.seboolean:
     name: httpd_can_network_connect
-    state: True
-    persistent: True
+    state: true
+    persistent: true
   tags: set-httpd_can_network_connect-true

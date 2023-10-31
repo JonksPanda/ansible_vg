@@ -2,9 +2,9 @@
 # tasks file for roles/mariadb
 
 - name: Install all neccesary packages for mariaDB.
-  import_tasks: install.yml
+  ansible.builtin.import_tasks: install.yml
   tags: install-db-programs
 
 - name: Configure database.
-  import_tasks: configure-db.yml
+  ansible.builtin.import_tasks: configure-db.yml
   tags: configure-db

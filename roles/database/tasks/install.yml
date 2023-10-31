@@ -1,0 +1,19 @@
+---
+# Installs mariaDB package
+
+- name: Make sure MariaDB package is installed
+  ansible.builtin.yum:
+    name: mariadb-server
+    state: installed
+  tags: mariadb-install
+- name: Make sure MySQL-python package is installed.
+  ansible.builtin.yum:
+    name: MySQL-python
+    state: installed
+  tags: mysql-python-install
+- name: Start MariaDB at boot.
+  ansible.builtin.service:
+    name: mariadb
+    enabled: true
+    state: started
+  tags: mariadb-install

@@ -1,5 +1,5 @@
 rpmpackage: "http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
-repository: "https://github.com/initab/demoapp.git"
+repository: "https://github.com/JonksPanda/demoapp.git"
 repo_destination: "/var/www/demo"
 prod_settings_destination: "{{ repo_destination }}/environments/production.yml"
 vhost_file: "demoapp.conf"

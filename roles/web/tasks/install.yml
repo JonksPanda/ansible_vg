@@ -1,23 +1,23 @@
 ---
 # installs all necessary packages for the webapp
 
-- name: Make sure latest apache package is installed
-  yum:
+- name: Make sure apache package is installed
+  ansible.builtin.yum:
     name: httpd
-    state: latest
+    state: installed
   tags: apache-install
 
 - name: Start apache at boot.
-  service:
+  ansible.builtin.service:
     name: httpd
-    enabled: True
+    enabled: true
     state: started
   tags: apache-install
 
-- name: Make sure latest version git package is installed.
+- name: Make sure git package is installed.
   ansible.builtin.yum:
     name: git
-    state: latest
+    state: installed
   tags: git-install
 
 - name: Make sure RPM package is added.
