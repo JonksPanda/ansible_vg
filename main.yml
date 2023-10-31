@@ -3,10 +3,12 @@
   hosts: dbservers
   roles:
     - role: common
+    - role: geerlingguy.firewall
     - role: database
 
 - name: Configure webservers.
   hosts: webservers
   roles:
     - role: common
+    - role: geerlingguy.firewall
     - role: web

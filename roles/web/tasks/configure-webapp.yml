@@ -5,21 +5,22 @@
   ansible.builtin.git:
     repo: "{{ repository }}"
     dest: "{{ repo_destination }}"
+    force: false
     update: false
   tags: pull-repo
 
-- name: Import demod file to systemd.
+- name: Import daemon file to systemd.
   ansible.builtin.template:
     src: demod.service.j2
-    dest: "/etc/systemd/system/demod.service"
+    dest: "{{ web_daemon.unit_path }}"
     mode: "644"
-  tags: import-demod-file
+  tags: import-daemon-file
   notify:
     - Restart demod.
 
-- name: Start demod at boot.
+- name: Start web-daemon at boot.
   ansible.builtin.service:
-    name: demod
+    name: "{{ web_daemon.name }}"
     enabled: true
     state: started
   tags: demod-enable

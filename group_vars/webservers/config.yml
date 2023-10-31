@@ -3,3 +3,6 @@ repository: "https://github.com/JonksPanda/demoapp.git"
 repo_destination: "/var/www/demo"
 prod_settings_destination: "{{ repo_destination }}/environments/production.yml"
 vhost_file: "demoapp.conf"
+web_daemon:
+  name: demod
+  unit_path: "/etc/systemd/system/demod.service"

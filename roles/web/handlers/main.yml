@@ -8,5 +8,5 @@
 
 - name: Restart demod.
   ansible.builtin.service:
-    name: demod
+    name: "{{ web_daemon.name }}"
     state: restarted
